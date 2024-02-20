@@ -1,0 +1,139 @@
+<div>
+    <form [formGroup]="articleForm" (ngSubmit)="onSubmit()">
+        <div formGroupName="info" >
+            <div class="card ">
+                <div class="card-header " style="padding: 5px;">
+                    <div class="row">
+                        <h3>
+                            <span class="title-default" title="Modifica Operazione" >Informazioni principali                            
+                            </span>     
+                        </h3>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <div class="row mb-3">
+                        <div class="row"> 
+                            <label class="label-row" for="language">Seleziona lingua  
+                            <i class="required-icon">*</i></label>
+                        </div>
+                        <select formControlName="language">
+                            <option value="Italiano" >Italiano</option>
+                            <option value="English - USA">English - USA</option>
+                            <option value="English">English</option>
+                        </select>       
+                    </div>
+                    <div class="row" >
+                        <div class="label-row">
+                            <label class="form-label" for="title">Titolo</label>
+                            <i class="required-icon">*</i>
+                            <span class="form-span" >Inserire massimo 15 parole</span>
+                        </div>
+                        <div class="label-row">
+                            <label class="form-label" style="margin-right: 14px;" for="subTitle">Sottotitolo</label>
+                            <span class="form-span" >Inserire massimo 17 parole</span></div>
+                    </div>
+                    <div class="row">
+                        <div class="input-row">
+                            <input class="form-text" type="text" formControlName="title" placeholder="Inserisci il titolo qui.. ">
+                        </div>
+                        <input class="form-text" type="text" formControlName="subTitle" placeholder="Inserisci il sottotiolo qui.. ">
+                    </div>
+                    <div class="row mb-3">
+                        <div class="row">
+                            <label class="mr-sm-2 form-label" for="description">Descrizione</label>
+                            <i class="required-icon">*</i>
+                        </div>
+                        <textarea id="myTextarea" formControlName="description" rows="4" cols="150"></textarea> 
+                    </div>
+                    <div class="row mb-3">
+                        <div class="row">
+                            <label class="mr-sm-2 form-label" for="infoDestinationID">Città</label>
+                            <i class="required-icon">*</i>
+                        </div>
+                        <input class="form-text" type="text" formControlName="infoDestinationID" 
+                        placeholder="Inserisci una città qui.. ">             
+                    </div>
+                    <div class="row mb-3">
+                        <div class="row">
+                            <label class="mr-sm-2 form-label" for="infoMediaImg">Carica Immagine</label>
+                            <i class="required-icon">*</i>
+                        </div>
+                        <div>
+                            <button type="button" class="insertImage buttonPers">Carica Immagine</button>
+                            <div style="display: inline-block">
+                                <input class="uploadFile" title=""
+                                ngbTooltip="Inserisci immagine" 
+                                formControlName="infoMediaImg" id="file" name="file" accept=".jpg" placement="top-right"
+                                type="file" (change)="postFileImgInfo($event)"/>
+                            </div>
+                        </div> 
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div formArrayName="paragraphs">
+            <div *ngFor="let paragraph of paragraphs.controls; let i = index">
+                <div [formGroupName]="i">
+                    <div class="card-header border-success" style="padding: 5px;">
+                        <div class="row">
+                            <h3>
+                                <span class="title-default" title="Modifica Operazione" >Paragrafo {{i + 1}} </span>     
+                            </h3>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div class="row mb-3">
+                            <div class="row">
+                                <label class="mr-sm-2 form-label" for="paragraphTitle">Titolo del paragrafo</label>
+                                <i class="required-icon">*</i>
+                            </div>
+                            <input class="form-text" type="text" formControlName="paragraphTitle" placeholder="Inserisci il titolo qui.. ">
+                        </div>
+                        <div class="row mb-3">
+                            <div class="row">
+                                <label class="mr-sm-2 form-label" for="paragraphText">Descrizione del paragrafo</label>
+                                <i class="required-icon">*</i>
+                            </div>
+                            <textarea id="myTextarea" formControlName="paragraphText" rows="4" cols="150"></textarea>
+                        </div>
+                        <div class="row mb-3">
+                            <div class="row">
+                                <label class="mr-sm-2 form-label" 
+                                for="paragraphDestinationID">Città</label>
+                                <i class="required-icon">*</i>
+                            </div>
+                            <input class="form-text" type="text" formControlName="paragraphDestinationID"
+                             placeholder="Inserisci una città qui.. " >
+                        </div>
+                        <div class="row mb-3">
+                            <div class="row">
+                                <label class="mr-sm-2 form-label" for="paragraphMediaImg">Carica Immagine</label>
+                                <i class="required-icon">*</i>
+                            </div>
+                            <div>
+                                <button type="button" class="insertImage buttonPers">Carica Immagine</button>
+                                <div style="display: inline-block">
+                                    <input class="uploadFile" title=""
+                                    ngbTooltip="Inserisci immagine" formControlName="paragraphMediaImg" id="file" name="file"
+                                     accept=".jpg" placement="top-right"type="file" (change)="postFileImgParagraph" />
+                                </div>
+                            </div> 
+                        </div>
+                        <div class="row mb-3">
+                            <button type="button" style="margin-left: 70% ;"
+                             class="clearParagraph buttonPers"(click)="clearParagraph(i)" >Pulisci paragrafo</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+          
+        </div>
+        <button type="submit"  [disabled]="articleForm.invalid" class="buttonPers" >Inva articolo</button>
+        <button type="button" style="float: right;" class="insertParagraph buttonPers"
+         (click)="addParagraph()">Aggiungi paragrafo</button>
+         <button type="button" style="margin-right: 20%; margin-left: 20%;" class="insertParagraph buttonPers"
+         (click)="onGetArticleCrono()">Scarica Cronologia Articoli</button>
+    </form>
+</div>
+
+

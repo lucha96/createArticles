@@ -1,0 +1,89 @@
+.card-header {
+    background: #23527c !important;
+    color: #FFFFFF !important;
+    margin-top: 30px;
+}
+
+.card-body {
+    color: #23527c !important;
+    padding-top: 30px;
+    padding-left: 30px;
+    padding-right: 30px;
+    border: 1px solid #23527c !important;
+}
+
+.title-default {
+    color: white;
+}
+
+
+.row {
+    margin-bottom: 30px;
+}
+
+.buttonPers{
+    display: inline-block;
+    padding: 5px 10px;
+    font-size: 16px;
+    font-weight: bold;
+    text-align: center;
+    text-decoration: none;
+    background-color: transparent;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.insertImage {
+    border: 2px solid #23527c !important;
+    color: #23527c !important;
+    transition: background-color 0.3s ease;
+    float: left; 
+    position: absolute; 
+}
+  
+
+
+.uploadFile {
+    opacity: 0 !important; 
+    font-size: 0 !important;   
+    width: 170px !important; 
+    height: 37px !important; 
+    float: left !important;
+}
+
+.insertParagraph {
+    border: 2px solid #23527c !important;
+    color: #23527c !important;
+    transition: background-color 0.3s ease;
+}
+
+.insertParagraph:hover {
+    background-color: #4CAF50;
+    color: white;
+}
+
+.clearParagraph {
+    border: 2px solid #23527c !important;
+    color: #23527c !important;   
+}
+
+.clearParagraph:hover {
+    background-color: red;
+    color: white;
+}
+
+#myTextarea {
+    max-width: 100% !important;
+}
+
+.label-row, .input-row{
+    width: 50%;
+    display: inline-block;
+}
+.form-span {
+    color: grey;
+}
+.required-icon{
+    margin-right: 14px;
+}
