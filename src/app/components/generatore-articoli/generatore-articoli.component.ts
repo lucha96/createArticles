@@ -29,7 +29,7 @@ export class GeneratoreArticoliComponent implements AfterViewInit{
     }]
   };
   articles: Article [] = [];
- 
+  paragraphsCrono: Paragraphs[] = [];
 
   constructor(private fb: FormBuilder, private articleServce: ArticleService, private localStorageService: LocalStorageService) {
     this.articleForm = this.fb.group({
@@ -91,8 +91,9 @@ export class GeneratoreArticoliComponent implements AfterViewInit{
     if(file.type === "image/jpeg"){
         this.ConvertToBase64(file).then(
           (data: any) => {
-            // server per rimuovere il tipo del file all'inizio del blob
-              // this.article.Info.infoMediaImg = data.substr(data.indexOf(',') + 1);
+            // serve per rimuovere il tipo del file all'inizio del blob
+              this.article.Info.infoMediaImg = data.substr(data.indexOf(',') + 1);
+              console.log(this.article);
           }, err => {  
               console.log("errore");
           });;
@@ -111,17 +112,11 @@ export class GeneratoreArticoliComponent implements AfterViewInit{
         this.ConvertToBase64(file).then(
           (data: any) => {
             let paragraphArray = this.articleForm.get('paragraphs') as FormArray;
+            console.log(paragraphArray);
             for (let i = 0; i < paragraphArray.length; i++) {
-              paragraphArray.at(i).setValue(data.indexOf(',') + 1 + (i + 1));
+              
+             paragraphArray.at(i).value.paragraphMediaImg =  data.substr(data.indexOf(',') + 1);
             }
-            //non sono riuscito ad assegnare il valore blob dell'immagine 
-            //dei paragrafi correnti tramite index e li assegno solamente al model...
-            this.article.Paragraphs.forEach((currpar: Paragraphs) => {
-              currpar = data.indexOf(',') + 1;
-            })
-            // formArray.forEach((currParagraph: Paragraphs) => {
-            //   currParagraph.paragraphMediaImg =  data.substr(data.indexOf(',') + 1);
-            // });
           }, err => {  
               console.log("errore");
           });;
@@ -140,7 +135,7 @@ export class GeneratoreArticoliComponent implements AfterViewInit{
       title: formValue.info.title,
       description: formValue.info.description,
       infoDestinationID: formValue.info.infoDestinationID,
-      infoMediaImg: formValue.info.infoMediaImg,
+      infoMediaImg: this.article.Info.infoMediaImg,
       subTitle: formValue.info.subTitle
     };
   
@@ -181,7 +176,13 @@ export class GeneratoreArticoliComponent implements AfterViewInit{
 
 
   onGetArticleCrono(){
-    this.articleServce.getArticlesCrono(this.articles);
+    this.articles = this.articleServce.getArticlesCrono();
+    if(this.articles){
+      this.articles.forEach((article: Article) =>{
+        this.paragraphsCrono.push(...article.Paragraphs);
+      })
+    }
+  
   }
 
   
