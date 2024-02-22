@@ -9,11 +9,13 @@ import { CommonModule } from '@angular/common';
 import { GeneratoreArticoliComponent } from './components/generatore-articoli/generatore-articoli.component';
 import { ArticleService } from './service/article.service';
 import { LocalStorageService, NgxWebstorageModule } from 'ngx-webstorage';
+import { ArticlesCronoComponent } from './components/articles-crono/articles-crono.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    GeneratoreArticoliComponent
+    GeneratoreArticoliComponent,
+    ArticlesCronoComponent
   ],
   imports: [
     BrowserModule,

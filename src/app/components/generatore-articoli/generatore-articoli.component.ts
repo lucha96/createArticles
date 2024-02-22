@@ -6,6 +6,7 @@ import { SingleImageValidator } from '../../shared/single-img-validator';
 import { Article, Info, Paragraphs } from '../../model/Article';
 import { ArticleService } from '../../service/article.service';
 import { LocalStorageService } from 'ngx-webstorage';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-generatore-articoli',
@@ -31,7 +32,12 @@ export class GeneratoreArticoliComponent implements AfterViewInit{
   articles: Article [] = [];
   paragraphsCrono: Paragraphs[] = [];
 
-  constructor(private fb: FormBuilder, private articleServce: ArticleService, private localStorageService: LocalStorageService) {
+  constructor(private fb: FormBuilder, 
+    private articleServce: ArticleService, 
+    private localStorageService: LocalStorageService,
+    private router: Router,
+    private route: ActivatedRoute
+    ) {
     this.articleForm = this.fb.group({
       info: this.fb.group({
         language: ['Italiano', Validators.required],
@@ -175,15 +181,11 @@ export class GeneratoreArticoliComponent implements AfterViewInit{
   }
 
 
-  onGetArticleCrono(){
-    this.articles = this.articleServce.getArticlesCrono();
-    if(this.articles){
-      this.articles.forEach((article: Article) =>{
-        this.paragraphsCrono.push(...article.Paragraphs);
-      })
-    }
   
-  }
+
+  onViewCrono() {
+    this.router.navigate(['crono'], {relativeTo: this.route});
+}
 
   
 }

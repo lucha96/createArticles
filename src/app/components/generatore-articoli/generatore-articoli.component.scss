@@ -41,9 +41,7 @@
     float: left; 
     position: absolute; 
 }
-  
-
-
+ 
 .uploadFile {
     opacity: 0 !important; 
     font-size: 0 !important;   
@@ -74,18 +72,16 @@
 }
 
 #myTextarea {
+    width: 100%;
     max-width: 100% !important;
 }
 
 .label-row, .input-row{
-    width: 50%;
+    width: 45%;
     display: inline-block;
+    margin-right: 5%;
 }
-.label-row-crono {
-    width: 50%;
-    display: inline-block;
-    margin-bottom: 23px;
-}
+
 .form-span {
     color: grey;
 }
@@ -95,4 +91,9 @@
 .resizedImg{
     width: 100px;
     height: 100px;
+}
+
+input[type="text" i] {
+    height: 20px;
+    width: 100% !important;
 }

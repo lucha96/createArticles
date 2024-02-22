@@ -36,22 +36,26 @@
                         <div class="input-row">
                             <input class="form-text" type="text" formControlName="title" placeholder="Inserisci il titolo qui.. ">
                         </div>
-                        <input class="form-text" type="text" formControlName="subTitle" placeholder="Inserisci il sottotiolo qui.. ">
+                        <div class="input-row">
+                            <input class="form-text" type="text" formControlName="subTitle" placeholder="Inserisci il sottotiolo qui.. ">
+                        </div>
                     </div>
                     <div class="row">
                         <div class="row">
                             <label class="form-label" for="description">Descrizione</label>
                             <i class="required-icon">*</i>
                         </div>
-                        <textarea id="myTextarea" formControlName="description" rows="4" cols="150"></textarea> 
+                        <div class="input-row"><textarea id="myTextarea" formControlName="description" rows="4"></textarea> </div>
                     </div>
                     <div class="row">
                         <div class="row">
                             <label class="form-label" for="infoDestinationID">Città</label>
                             <i class="required-icon">*</i>
                         </div>
-                        <input class="form-text" type="text" formControlName="infoDestinationID" 
-                        placeholder="Inserisci una città qui.. ">             
+                        <div class="input-row">
+                             <input class="form-text" type="text" formControlName="infoDestinationID" 
+                            placeholder="Inserisci una città qui.. ">      
+                        </div>   
                     </div>
                     <div class="row">
                         <div class="row">
@@ -87,14 +91,18 @@
                                 <label class="form-label" for="paragraphTitle">Titolo del paragrafo</label>
                                 <i class="required-icon">*</i>
                             </div>
-                            <input class="form-text" type="text" formControlName="paragraphTitle" placeholder="Inserisci il titolo qui.. ">
+                            <div class="input-row">
+                                <input class="form-text" type="text" formControlName="paragraphTitle" placeholder="Inserisci il titolo qui.. ">
+                            </div>
                         </div>
                         <div class="row">
                             <div class="row">
                                 <label class="form-label" for="paragraphText">Descrizione del paragrafo</label>
                                 <i class="required-icon">*</i>
                             </div>
-                            <textarea id="myTextarea" formControlName="paragraphText" rows="4" cols="150"></textarea>
+                            <div class="input-row">
+                                <textarea id="myTextarea" formControlName="paragraphText" rows="4" cols="150"></textarea>
+                            </div>
                         </div>
                         <div class="row">
                             <div class="row">
@@ -102,8 +110,10 @@
                                 for="paragraphDestinationID">Città</label>
                                 <i class="required-icon">*</i>
                             </div>
-                            <input class="form-text" type="text" formControlName="paragraphDestinationID"
-                             placeholder="Inserisci una città qui.. " >
+                            <div class="input-row"> 
+                                <input class="form-text" type="text" formControlName="paragraphDestinationID"
+                                placeholder="Inserisci una città qui.. " >
+                            </div>  
                         </div>
                         <div class="row">
                             <div class="row">
@@ -132,79 +142,10 @@
         <button type="button" style="float: right;" class="insertParagraph buttonPers"
          (click)="addParagraph()">Aggiungi paragrafo</button>
          <button type="button" style="margin-right: 20%; margin-left: 20%;" class="insertParagraph buttonPers"
-         (click)="onGetArticleCrono()">Scarica Cronologia Articoli</button>
+         (click)="onViewCrono()">Scarica Cronologia Articoli</button>
     </form>
 
-    <div *ngIf="articles.length > 0">
-        <div *ngFor="let article of articles; let i = index">
-            <div *ngFor="let paragraph of article.Paragraphs; let j = index">
-                <form>
-                    <div class="card ">
-                        <div class="card-header " style="padding: 5px;">
-                            <div class="row">
-                                <h3>
-                                    <span class="title-default" title="Modifica Operazione" >Riassunto Articolo {{i + 1}}                            
-                                    </span>     
-                                </h3>
-                            </div>
-                        </div>
-                        <div class="card-body">
-                            <div class="label-row-crono">
-                                <label for="language">lingua:</label>
-                                <input type="text" id="language" name="language" [(ngModel)]="article.Info.language">
-                            </div>
-                            <div class="label-row-crono">
-                                <label for="title">Titolo: </label>
-                                <input type="text" id="title" name="title" [(ngModel)]="article.Info.title">
-                            </div>
-                            <div class="label-row-crono">
-                                <label for="infoDestinationID">Sottotitolo: </label>
-                                <input type="text" id="subTitle" name="subTitle" [(ngModel)]="article.Info.subTitle">
-                            </div>
-                            <div class="label-row-crono">
-                                <label for="description">Descrizione: </label>
-                                <input type="description" id="description" name="description" [(ngModel)]="article.Info.description">
-                            </div>
-                            <div class="row">
-                                <label for="infoDestinationID">Città: </label>
-                                <input type="text" id="infoDestinationID" name="infoDestinationID" [(ngModel)]="article.Info.infoDestinationID">
-                            </div>
-                            <div  class="label-row-crono">
-                                <img class="resizedImg" [src]="article.Info.infoMediaImg" alt="Immagine articolo" />
-                            </div>
-                            <div class="card-header " style="padding: 2px;">
-                                <div class="row">
-                                    <h3>
-                                        <span class="title-default" title="Modifica Operazione" >Riassunto Paragrafo {{j + 1}} relativo 
-                                            all articolo {{i + 1}}                         
-                                        </span>     
-                                    </h3>
-                                </div>
-                            </div>
-                            <div class="card-body">
-                                <div class="label-row-crono">
-                                    <label for="paragraphTitle">Titolo del paragrafo: </label>
-                                    <input type="text" id="paragraphTitle" name="paragraphTitle" [(ngModel)]="paragraph.paragraphTitle">
-                                </div>
-                                <div class="label-row-crono">
-                                    <label for="paragraphDestinationID">Titolo del paragrafo: </label>
-                                    <input type="text" id="paragraphDestinationID" name="paragraphDestinationID" [(ngModel)]="paragraph.paragraphDestinationID">
-                                </div>
-                                <div class="row">
-                                    <label for="paragraphText">Descrizione del paragrafo: </label>
-                                    <textarea id="myTextarea" name="paragraphText" rows="4" cols="150" [(ngModel)]="paragraph.paragraphText"></textarea>
-                                </div>
-                                <div *ngIf="paragraph.paragraphMediaImg" class="row">
-                                    <img class="resizedImg" [src]="paragraph.paragraphMediaImg" alt="Immagine paragrafo" />
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </form>
-            </div>
-          </div>
-       
-      </div>
 </div>
-
-
+<div>
+    <router-outlet></router-outlet>
+</div>
